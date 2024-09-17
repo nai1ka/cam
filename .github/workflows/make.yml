@@ -28,6 +28,7 @@ name: make
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 concurrency:
   group: make-${{ github.ref }}
   cancel-in-progress: true
