@@ -28,6 +28,7 @@ name: make
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 concurrency:
   group: make-${{ github.ref }}
   cancel-in-progress: true
@@ -37,6 +38,7 @@ jobs:
     container: yegor256/cam:0.9.2
     steps:
       - uses: actions/checkout@v4
+      - run: apt install python3.10-venv
       - run: make install
       - run: make env lint test
   make-macos:
@@ -49,5 +51,5 @@ jobs:
           website: oracle.com
           release: 22
       - run: sudo chown -R "$(whoami)" /usr/local
-      - run: make install
+      - run: sudo make install
       - run: make env lint test
