@@ -36,6 +36,10 @@ if pmd --version >/dev/null 2>&1; then
   exit
 fi
 
+if [ -e "/usr/local/bin/pmd" ]; then
+    echo "PMD is installed, but not in PATH. Add /usr/local/bin/pmd to the PATH and try again."
+fi
+
 if [ ! -e /usr/local ]; then
   echo "The directory /usr/local must exist"
   exit 1
@@ -48,5 +52,6 @@ wget --quiet "https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmd_
 unzip -qq "${name}.zip"
 rm "${name}.zip"
 mv "pmd-bin-${pmd_version}" pmd
+
 ln -s /usr/local/pmd/bin/pmd /usr/local/bin/pmd
 echo "PMD installed into /usr/local/bin/pmd"
