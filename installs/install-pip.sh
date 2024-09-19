@@ -30,4 +30,8 @@ set -o pipefail
 # see https://stackoverflow.com/a/76641565/187141
 #rm /usr/lib/python3.*/EXTERNALLY-MANAGED
 
-pip3 install -r "${LOCAL}/requirements.txt"
+while IFS= read -r package; do
+    if ! pip install "$package"; then
+        pipx install "$package"
+    fi
+done < "${LOCAL}/requirements.txt"
