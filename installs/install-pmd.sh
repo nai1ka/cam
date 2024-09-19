@@ -38,6 +38,7 @@ fi
 
 if [ -e "/usr/local/bin/pmd" ]; then
     echo "PMD is installed, but not in PATH. Add /usr/local/bin/pmd to the PATH and try again."
+    exit
 fi
 
 if [ ! -e /usr/local ]; then
