@@ -30,8 +30,12 @@ set -o pipefail
 # see https://stackoverflow.com/a/76641565/187141
 #rm /usr/lib/python3.*/EXTERNALLY-MANAGED
 
-while IFS= read -r package; do
-    if ! pip install "$package"; then
-        pipx install "$package"
-    fi
-done < "${LOCAL}/requirements.txt"
+
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
+fi
+
+source venv/bin/activate
+pip install -r requirements.txt
+
+
