@@ -49,5 +49,5 @@ jobs:
           website: oracle.com
           release: 22
       - run: sudo chown -R "$(whoami)" /usr/local
-      - run: make install
+      - run: sudo make install
       - run: make env lint test
