@@ -63,8 +63,11 @@ define step
 	set -e
 	start=$$(date +%s%N)
 	echo -e "\n\n\n+++ $(1) +++\n"
-	make -v
-    bash $(LOCAL)/steps/$(1).sh
+	echo "Checking if the virtual environment is activated..."
+	if [ -d "$(LOCAL)/venv" ]; then
+		source "$(LOCAL)/venv/bin/activate"
+	fi
+    @bash $(LOCAL)/steps/$(1).sh
 	echo "Finished$$("$${LOCAL}/help/tdiff.sh" "$${start}")"
 endef
 
