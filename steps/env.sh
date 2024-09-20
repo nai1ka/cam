@@ -79,11 +79,17 @@ pmd --version
 
 nproc --version
 
-# Part of coreutils (by GNU):
-sed --version
+if "${LOCAL}/help/is-macos.sh"; then
+  command -v sed
+  # Part of coreutils (by GNU):
+  grealpath --version
+else
+  sed --version
+  realpath --version
+fi
 
-# Part of coreutils (by GNU):
-realpath --version
+
+
 
 bc -v
 
