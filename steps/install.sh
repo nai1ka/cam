@@ -93,6 +93,7 @@ if ! xmllint --version >/dev/null 2>&1; then
   else
     "${LOCAL}/help/assert-tool.sh" xmllint --version
   fi
+fi
 
 
 find "${LOCAL}/installs" -name 'install-*' | sort | while IFS= read -r i; do
