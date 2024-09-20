@@ -30,7 +30,7 @@ if [ ! -e "${temp}/gits" ]; then exit; fi
 
 repos=${temp}/git-repos-moving-back.txt
 
-find "${temp}/gits" -maxdepth 2 -mindepth 2 -type d -exec realpath --relative-to="${temp}/gits" {} \; > "${repos}"
+find "${temp}/gits" -maxdepth 2 -mindepth 2 -type d -exec "${LOCAL}/help/realpath.sh" --relative-to="${temp}/gits" {} \; > "${repos}"
 
 if [ -s "${repos}" ]; then
     while IFS= read -r repo; do

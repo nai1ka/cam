@@ -29,7 +29,7 @@ temp=$2
 if [ ! -e "${TARGET}/github" ]; then exit; fi
 
 list=${temp}/git-to-move.txt
-find "${TARGET}/github" -maxdepth 2 -mindepth 2 -type d -exec realpath --relative-to="${TARGET}/github" {} \; > "${list}"
+find "${TARGET}/github" -maxdepth 2 -mindepth 2 -type d -exec "${LOCAL}/help/realpath.sh" --relative-to="${TARGET}/github" {} \; > "${list}"
 
 gits=${temp}/gits
 mkdir -p "${gits}"

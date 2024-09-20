@@ -23,30 +23,11 @@
 set -e
 set -o pipefail
 
-start=$(date +%s%N)
 
-jobs=${TARGET}/temp/jobs/jpeek-jobs.txt
-rm -rf "${jobs}"
-mkdir -p "$(dirname "${jobs}")"
-touch "${jobs}"
-
-repos=$(find "${TARGET}/github" -maxdepth 2 -mindepth 2 -type d -print)
-total=$(echo "${repos}" | wc -l | xargs)
-
-dir=${TARGET}/temp/jpeek/all
-mkdir -p "${dir}"
-
-declare -i repo=0
-sh="$(dirname "$0")/jpeek-repo.sh"
-for d in ${repos}; do
-    r=$("${LOCAL}/help/realpath.sh" --relative-to="${TARGET}/github" "${d}" )
-    repo=$((repo+1))
-    printf "timeout 1h %s %s %s %s || true\n" "${sh@Q}" "${r@Q}" "${repo@Q}" "${total@Q}" >> "${jobs}"
-done
-
-"${LOCAL}/help/parallel.sh" "${jobs}"
-wait
-
-done=$(find "${dir}" -maxdepth 2 -mindepth 2 -type d -print | wc -l | xargs)
-
-echo "All ${total} repositories passed through jPeek, ${done} of them produced data, in $(nproc) threads$("${LOCAL}/help/tdiff.sh" "${start}")"
+if "${LOCAL}/help/is-macos.sh"; then
+    # Check if grealpath from coreutils
+    grealpath "$@"
+else
+    # Use realpath for other operating systems
+    realpath "$@"
+fi

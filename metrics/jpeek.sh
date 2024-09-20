@@ -27,7 +27,7 @@ set -o pipefail
 java=$1
 output=$2
 
-if [[ ! "$(realpath --relative-to="${TARGET}/github" "${java}")" =~ ^\.\. ]]; then
+if [[ ! "$("${LOCAL}/help/realpath.sh" --relative-to="${TARGET}/github" "${java}")" =~ ^\.\. ]]; then
     exit
 fi
 

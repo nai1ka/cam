@@ -36,7 +36,7 @@ tests=$(
 )
 echo "There are $(echo "${tests}" | wc -l | xargs) tests in ${dir}"
 echo "${tests}" | while IFS= read -r test; do
-    name=$(realpath --relative-to="${LOCAL}/tests" "${test}")
+    name=$("${LOCAL}/help/realpath.sh" --relative-to="${LOCAL}/tests" "${test}")
     if [ -n "${TEST}" ] && [ ! "${TEST}" = "${name}" ] && [ ! "${TEST}" = "tests/${name}" ]; then
         echo "Skipped ${name}"
         continue
