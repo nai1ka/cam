@@ -35,7 +35,9 @@ if [ ! -d "venv" ]; then
     python3 -m venv venv
 fi
 
+# shellcheck source=/dev/null
 source venv/bin/activate
+
 pip install -r requirements.txt
 
 
