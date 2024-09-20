@@ -85,15 +85,6 @@ if ! inkscape --version >/dev/null 2>&1; then
   fi
 fi
 
-if ! pipx --version >/dev/null 2>&1; then
-  if "${LOCAL}/help/is-linux.sh"; then
-    "${LOCAL}/help/sudo.sh" apt-get install -y pipx
-  elif "${LOCAL}/help/is-macos.sh"; then
-    "${LOCAL}/help/sudo.sh" --as-user brew install pipx
-  else
-    "${LOCAL}/help/assert-tool.sh" pipx --version
-  fi
-fi
 
 find "${LOCAL}/installs" -name 'install-*' | sort | while IFS= read -r i; do
   "${i}"
