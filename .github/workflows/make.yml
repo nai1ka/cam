@@ -52,7 +52,7 @@ jobs:
       - name: 'Update make using brew'
         run: brew install make
       - name: 'Update PATH for make'
-        run: echo 'export PATH="/usr/local/bin:$PATH"' >> $GITHUB_ENV
+        run: echo 'export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"' >> $GITHUB_ENV
       - run: make --version
       - run: sudo make install
       - run: make env lint test
