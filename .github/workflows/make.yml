@@ -53,5 +53,9 @@ jobs:
         run: brew install make
       
       - run: gmake --version
+
+      - name: 'Update bash using brew'
+        run: brew install bash
+      - run: bash --version
       - run: sudo gmake install
       - run: gmake env lint test
